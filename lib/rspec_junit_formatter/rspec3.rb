@@ -41,6 +41,10 @@ private
     @summary_notification.duration
   end
 
+  def linenr_for(notification)
+    notification.example.metadata[:line_number].to_s
+  end
+
   def examples
     @examples_notification.notifications
   end

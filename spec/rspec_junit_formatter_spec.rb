@@ -1,5 +1,6 @@
 require "pty"
 require "stringio"
+require "expect"
 require "nokogiri"
 require "rspec_junit_formatter"
 
@@ -79,6 +80,9 @@ describe RspecJunitFormatter do
       expect(testcase["classname"]).to eql("spec.example_spec")
       expect(testcase["name"]).not_to be_empty
       expect(testcase["time"].to_f).to be > 0
+
+      line = Integer(testcase["line"], exception: false)
+      expect(line).to be_an(Integer)
     end
 
     # it has successful test cases
